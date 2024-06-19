@@ -9,16 +9,22 @@ import SwiftUI
 
 struct S04ContentView: View {
     
-    @State private var isOn: Bool = false
+    @State private var name: String = ""
+    @State private var friends: [String] = []
     
     var body: some View {
         VStack {
-            Toggle(isOn: $isOn) {
-                Text(isOn ? "ON" : "OFF")
-                    .foregroundStyle(.white)
-            }.fixedSize()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(isOn ? .yellow : .black)
+            TextField("Enter name", text: $name)
+                .textFieldStyle(.roundedBorder)
+                .onSubmit {
+                    friends.append(name)
+                    name = ""
+                }
+            List(friends, id: \.self) { friend in
+                Text(friend)
+            }
+            Spacer()
+        }.padding()
     }
 }
 
