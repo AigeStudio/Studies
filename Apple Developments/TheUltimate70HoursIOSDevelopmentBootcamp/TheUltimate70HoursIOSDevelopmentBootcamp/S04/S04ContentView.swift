@@ -9,16 +9,16 @@ import SwiftUI
 
 struct S04ContentView: View {
     
-    @State private var count: Int = 0
+    @State private var isOn: Bool = false
     
     var body: some View {
         VStack {
-            Text("\(count)")
-                .font(.largeTitle)
-            Button("Increment") {
-                count += 1
-            }
-        }
+            Toggle(isOn: $isOn) {
+                Text(isOn ? "ON" : "OFF")
+                    .foregroundStyle(.white)
+            }.fixedSize()
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(isOn ? .yellow : .black)
     }
 }
 
