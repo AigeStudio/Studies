@@ -9,13 +9,9 @@ import SwiftUI
 
 @main
 struct TheUltimate70HoursIOSDevelopmentBootcampApp: App {
-    
-    @StateObject private var appState = AppState()
-    
     var body: some Scene {
         WindowGroup {
-            S04ContentView()
-                .environmentObject(appState)
+            S05ContentView()
         }
     }
 }
