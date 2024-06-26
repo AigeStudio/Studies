@@ -20,6 +20,10 @@
 		1B9CF6292C24035000F8FBA6 /* GeocodingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF6282C24035000F8FBA6 /* GeocodingClient.swift */; };
 		1B9CF62B2C240FFE00F8FBA6 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF62A2C240FFE00F8FBA6 /* WeatherClient.swift */; };
 		1B9CF62E2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF62D2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift */; };
+		C85E62172C25BBBB007C7EB6 /* S06ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E62162C25BBBB007C7EB6 /* S06ContentView.swift */; };
+		C85E621A2C25BC4D007C7EB6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E62192C25BC4D007C7EB6 /* Product.swift */; };
+		C8C3F9942C2B0625008CFACE /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9932C2B0625008CFACE /* WebService.swift */; };
+		C8C3F9972C2B0939008CFACE /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		1B9CF6282C24035000F8FBA6 /* GeocodingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingClient.swift; sourceTree = "<group>"; };
 		1B9CF62A2C240FFE00F8FBA6 /* WeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		1B9CF62D2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeasurementFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		C85E62162C25BBBB007C7EB6 /* S06ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S06ContentView.swift; sourceTree = "<group>"; };
+		C85E62192C25BC4D007C7EB6 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		C8C3F9932C2B0625008CFACE /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,7 @@
 		1B0EE55E2C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcamp */ = {
 			isa = PBXGroup;
 			children = (
+				C85E62152C25BAF3007C7EB6 /* S06 */,
 				1B9CF61A2C22BB2600F8FBA6 /* S05 */,
 				1B9CF6172C22669200F8FBA6 /* S04 */,
 				1B0EE55F2C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcampApp.swift */,
@@ -140,6 +149,41 @@
 				1B9CF62D2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C85E62152C25BAF3007C7EB6 /* S06 */ = {
+			isa = PBXGroup;
+			children = (
+				C8C3F9952C2B091F008CFACE /* View Models */,
+				C8C3F9922C2B036C008CFACE /* Services */,
+				C85E62182C25BC25007C7EB6 /* Models */,
+				C85E62162C25BBBB007C7EB6 /* S06ContentView.swift */,
+			);
+			path = S06;
+			sourceTree = "<group>";
+		};
+		C85E62182C25BC25007C7EB6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C85E62192C25BC4D007C7EB6 /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C8C3F9922C2B036C008CFACE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C8C3F9932C2B0625008CFACE /* WebService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C8C3F9952C2B091F008CFACE /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +258,8 @@
 			files = (
 				1B9CF6242C23047100F8FBA6 /* APIEndpoint.swift in Sources */,
 				1B0EE5622C21A30200E143F7 /* ContentView.swift in Sources */,
+				C8C3F9942C2B0625008CFACE /* WebService.swift in Sources */,
+				C85E62172C25BBBB007C7EB6 /* S06ContentView.swift in Sources */,
 				1B9CF61C2C22BB3F00F8FBA6 /* S05ContentView.swift in Sources */,
 				1B9CF61F2C23024700F8FBA6 /* Location.swift in Sources */,
 				1B0EE5602C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcampApp.swift in Sources */,
@@ -221,8 +267,10 @@
 				1B9CF62B2C240FFE00F8FBA6 /* WeatherClient.swift in Sources */,
 				1B9CF6212C23031000F8FBA6 /* Weather.swift in Sources */,
 				1B9CF6192C2268E400F8FBA6 /* S04ContentView.swift in Sources */,
+				C8C3F9972C2B0939008CFACE /* ProductListViewModel.swift in Sources */,
 				1B9CF6272C23084C00F8FBA6 /* Constants.swift in Sources */,
 				1B9CF6292C24035000F8FBA6 /* GeocodingClient.swift in Sources */,
+				C85E621A2C25BC4D007C7EB6 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
