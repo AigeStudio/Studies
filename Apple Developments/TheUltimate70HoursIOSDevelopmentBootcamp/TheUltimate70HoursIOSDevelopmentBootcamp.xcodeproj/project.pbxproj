@@ -24,6 +24,9 @@
 		C85E621A2C25BC4D007C7EB6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E62192C25BC4D007C7EB6 /* Product.swift */; };
 		C8C3F9942C2B0625008CFACE /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9932C2B0625008CFACE /* WebService.swift */; };
 		C8C3F9972C2B0939008CFACE /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */; };
+		C8C3F9992C2CF20F008CFACE /* S06MVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9982C2CF20F008CFACE /* S06MVContentView.swift */; };
+		C8C3F99B2C2CF30D008CFACE /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F99A2C2CF30D008CFACE /* StoreModel.swift */; };
+		C8C3F99E2C2CF7D2008CFACE /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F99D2C2CF7D2008CFACE /* NumberFormatter+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		C85E62192C25BC4D007C7EB6 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C8C3F9932C2B0625008CFACE /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
+		C8C3F9982C2CF20F008CFACE /* S06MVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S06MVContentView.swift; sourceTree = "<group>"; };
+		C8C3F99A2C2CF30D008CFACE /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
+		C8C3F99D2C2CF7D2008CFACE /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,10 +160,12 @@
 		C85E62152C25BAF3007C7EB6 /* S06 */ = {
 			isa = PBXGroup;
 			children = (
+				C8C3F99C2C2CF7BD008CFACE /* Extensions */,
 				C8C3F9952C2B091F008CFACE /* View Models */,
 				C8C3F9922C2B036C008CFACE /* Services */,
 				C85E62182C25BC25007C7EB6 /* Models */,
 				C85E62162C25BBBB007C7EB6 /* S06ContentView.swift */,
+				C8C3F9982C2CF20F008CFACE /* S06MVContentView.swift */,
 			);
 			path = S06;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				C85E62192C25BC4D007C7EB6 /* Product.swift */,
+				C8C3F99A2C2CF30D008CFACE /* StoreModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +193,14 @@
 				C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */,
 			);
 			path = "View Models";
+			sourceTree = "<group>";
+		};
+		C8C3F99C2C2CF7BD008CFACE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8C3F99D2C2CF7D2008CFACE /* NumberFormatter+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,12 +273,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C3F99B2C2CF30D008CFACE /* StoreModel.swift in Sources */,
 				1B9CF6242C23047100F8FBA6 /* APIEndpoint.swift in Sources */,
 				1B0EE5622C21A30200E143F7 /* ContentView.swift in Sources */,
 				C8C3F9942C2B0625008CFACE /* WebService.swift in Sources */,
+				C8C3F9992C2CF20F008CFACE /* S06MVContentView.swift in Sources */,
 				C85E62172C25BBBB007C7EB6 /* S06ContentView.swift in Sources */,
 				1B9CF61C2C22BB3F00F8FBA6 /* S05ContentView.swift in Sources */,
 				1B9CF61F2C23024700F8FBA6 /* Location.swift in Sources */,
+				C8C3F99E2C2CF7D2008CFACE /* NumberFormatter+Extensions.swift in Sources */,
 				1B0EE5602C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcampApp.swift in Sources */,
 				1B9CF62E2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift in Sources */,
 				1B9CF62B2C240FFE00F8FBA6 /* WeatherClient.swift in Sources */,
