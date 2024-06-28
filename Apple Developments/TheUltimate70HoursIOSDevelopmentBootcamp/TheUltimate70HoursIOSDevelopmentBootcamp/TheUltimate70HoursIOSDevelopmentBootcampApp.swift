@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct TheUltimate70HoursIOSDevelopmentBootcampApp: App {
-    @StateObject private var storeModel = StoreModel(webservice: WebService())
+//    @StateObject private var storeModel = StoreModel(webservice: WebService())
 
     var body: some Scene {
         WindowGroup {
-            S05ContentView().environmentObject(storeModel)
+//            S05ContentView().environmentObject(storeModel)
         }
     }
 }

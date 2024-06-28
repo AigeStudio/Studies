@@ -22,6 +22,8 @@
 		1B9CF62E2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF62D2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift */; };
 		C85E62172C25BBBB007C7EB6 /* S06ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E62162C25BBBB007C7EB6 /* S06ContentView.swift */; };
 		C85E621A2C25BC4D007C7EB6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E62192C25BC4D007C7EB6 /* Product.swift */; };
+		C8A8144F2C2D9E77001D9150 /* S07LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A8144E2C2D9E77001D9150 /* S07LoginView.swift */; };
+		C8A814522C2D9F9F001D9150 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A814512C2D9F9F001D9150 /* String+Extensions.swift */; };
 		C8C3F9942C2B0625008CFACE /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9932C2B0625008CFACE /* WebService.swift */; };
 		C8C3F9972C2B0939008CFACE /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */; };
 		C8C3F9992C2CF20F008CFACE /* S06MVContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C3F9982C2CF20F008CFACE /* S06MVContentView.swift */; };
@@ -46,6 +48,8 @@
 		1B9CF62D2C241DDB00F8FBA6 /* MeasurementFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeasurementFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		C85E62162C25BBBB007C7EB6 /* S06ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S06ContentView.swift; sourceTree = "<group>"; };
 		C85E62192C25BC4D007C7EB6 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		C8A8144E2C2D9E77001D9150 /* S07LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S07LoginView.swift; sourceTree = "<group>"; };
+		C8A814512C2D9F9F001D9150 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C8C3F9932C2B0625008CFACE /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		C8C3F9962C2B0939008CFACE /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		C8C3F9982C2CF20F008CFACE /* S06MVContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S06MVContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		1B0EE55E2C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcamp */ = {
 			isa = PBXGroup;
 			children = (
+				C8A8144B2C2D9DE5001D9150 /* S07 */,
 				C85E62152C25BAF3007C7EB6 /* S06 */,
 				1B9CF61A2C22BB2600F8FBA6 /* S05 */,
 				1B9CF6172C22669200F8FBA6 /* S04 */,
@@ -179,6 +184,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C8A8144B2C2D9DE5001D9150 /* S07 */ = {
+			isa = PBXGroup;
+			children = (
+				C8A814502C2D9F72001D9150 /* Extensions */,
+				C8A8144E2C2D9E77001D9150 /* S07LoginView.swift */,
+			);
+			path = S07;
+			sourceTree = "<group>";
+		};
+		C8A814502C2D9F72001D9150 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8A814512C2D9F9F001D9150 /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C8C3F9922C2B036C008CFACE /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A814522C2D9F9F001D9150 /* String+Extensions.swift in Sources */,
 				C8C3F99B2C2CF30D008CFACE /* StoreModel.swift in Sources */,
 				1B9CF6242C23047100F8FBA6 /* APIEndpoint.swift in Sources */,
 				1B0EE5622C21A30200E143F7 /* ContentView.swift in Sources */,
@@ -291,6 +314,7 @@
 				1B9CF6272C23084C00F8FBA6 /* Constants.swift in Sources */,
 				1B9CF6292C24035000F8FBA6 /* GeocodingClient.swift in Sources */,
 				C85E621A2C25BC4D007C7EB6 /* Product.swift in Sources */,
+				C8A8144F2C2D9E77001D9150 /* S07LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
