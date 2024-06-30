@@ -51,6 +51,7 @@ struct S07LoginView: View {
             Button("Login") {
                 if loginState.isValid() {}
             }
+//            ValidationSummaryView(errors: errors)
         }
     }
 }
