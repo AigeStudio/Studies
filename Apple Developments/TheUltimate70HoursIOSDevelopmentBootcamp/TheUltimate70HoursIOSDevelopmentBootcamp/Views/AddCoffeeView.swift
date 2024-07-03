@@ -20,6 +20,9 @@ struct AddCoffeeView: View {
     @State private var coffeeSize: CoffeeSize = .medium
     @State private var errors: AddCoffeeErrors = .init()
 
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var model: CoffeeModel
+
     var isValid: Bool {
         errors = AddCoffeeErrors()
         if name.isEmpty {
@@ -38,27 +41,43 @@ struct AddCoffeeView: View {
         return errors.name.isEmpty && errors.price.isEmpty && errors.coffeeName.isEmpty
     }
 
+    private func placeOrder() async {
+        let order = Order(name: name, coffeeName: coffeeName, total: Double(price) ?? 0, size: coffeeSize)
+        do {
+            try await model.placeOrder(order)
+            dismiss()
+        } catch {
+            print(error)
+        }
+    }
+
     var body: some View {
-        Form {
-            TextField("Name", text: $name).accessibilityIdentifier("name")
-            Text(errors.name).visible(errors.name.isNotEmpty).font(.caption)
+        NavigationStack {
+            Form {
+                TextField("Name", text: $name).accessibilityIdentifier("name")
+                Text(errors.name).visible(errors.name.isNotEmpty).font(.caption)
 
-            TextField("Coffee name", text: $coffeeName).accessibilityIdentifier("coffeeName")
-            Text(errors.coffeeName).visible(errors.coffeeName.isNotEmpty).font(.caption)
+                TextField("Coffee name", text: $coffeeName).accessibilityIdentifier("coffeeName")
+                Text(errors.coffeeName).visible(errors.coffeeName.isNotEmpty).font(.caption)
 
-            TextField("Price", text: $price).accessibilityIdentifier("price")
-            Text(errors.price).visible(errors.price.isNotEmpty).font(.caption)
+                TextField("Price", text: $price).accessibilityIdentifier("price")
+                Text(errors.price).visible(errors.price.isNotEmpty).font(.caption)
 
-            Picker("Select size", selection: $coffeeSize) {
-                ForEach(CoffeeSize.allCases, id: \.rawValue) { size in
-                    Text(size.rawValue).tag(size)
-                }
-            }.pickerStyle(.segmented)
+                Picker("Select size", selection: $coffeeSize) {
+                    ForEach(CoffeeSize.allCases, id: \.rawValue) { size in
+                        Text(size.rawValue).tag(size)
+                    }
+                }.pickerStyle(.segmented)
 
-            Button("Place Order") {
-                if isValid {}
-            }.accessibilityIdentifier("placeOrderButton")
-                .centerHorizontally()
+                Button("Place Order") {
+                    if isValid {
+                        Task {
+                            await placeOrder()
+                        }
+                    }
+                }.accessibilityIdentifier("placeOrderButton")
+                    .centerHorizontally()
+            }.navigationTitle("Add Coffee")
         }
     }
 }
