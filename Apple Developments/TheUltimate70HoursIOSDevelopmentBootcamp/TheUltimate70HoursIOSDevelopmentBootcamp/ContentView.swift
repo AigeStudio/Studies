@@ -18,17 +18,38 @@ struct ContentView: View {
         }
     }
 
+    private func deleteOrder(_ indexSet: IndexSet) {
+        indexSet.forEach { index in
+            let order = model.orders[index]
+            guard let orderId = order.id else { return }
+            Task {
+                do {
+                    try await model.deletedOrder(orderId)
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
                 if model.orders.isEmpty {
                     Text("No orders available!").accessibilityIdentifier("noOrdersTezt")
                 } else {
-                    List(model.orders) { order in
-                        OrderCellView(order: order)
+                    List {
+                        ForEach(model.orders) { order in
+                            NavigationLink(value: order.id) {
+                                OrderCellView(order: order)
+                            }
+                        }.onDelete(perform: deleteOrder)
                     }
                 }
-            }.task {
+            }.navigationDestination(for: Int.self, destination: { orderId in
+                OrderDetailView(orderId: orderId)
+            })
+            .task {
                 await populateOrders()
             }
             .sheet(isPresented: $isPresented, content: {
