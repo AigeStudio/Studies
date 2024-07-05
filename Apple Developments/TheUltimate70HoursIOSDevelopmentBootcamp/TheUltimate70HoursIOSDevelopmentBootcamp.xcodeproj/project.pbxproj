@@ -7,38 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B0EE5602C21A30200E143F7 /* HelloCoffeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0EE55F2C21A30200E143F7 /* HelloCoffeeApp.swift */; };
+		1B0EE5602C21A30200E143F7 /* BudgetsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0EE55F2C21A30200E143F7 /* BudgetsApp.swift */; };
 		1B0EE5622C21A30200E143F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0EE5612C21A30200E143F7 /* ContentView.swift */; };
 		1B0EE5642C21A30500E143F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0EE5632C21A30500E143F7 /* Assets.xcassets */; };
 		1B0EE5672C21A30500E143F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0EE5662C21A30500E143F7 /* Preview Assets.xcassets */; };
-		C8961F272C36DA0900E3CCE2 /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8961F262C36DA0900E3CCE2 /* OrderDetailView.swift */; };
-		C8D3B86C2C32DF04002C4895 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B86B2C32DF04002C4895 /* Order.swift */; };
-		C8D3B86E2C32DFF4002C4895 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B86D2C32DFF4002C4895 /* WebService.swift */; };
-		C8D3B8702C32E761002C4895 /* CoffeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B86F2C32E761002C4895 /* CoffeeModel.swift */; };
-		C8D3B8732C338F64002C4895 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B8722C338F64002C4895 /* NumberFormatter+Extensions.swift */; };
-		C8D3B8762C341286002C4895 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B8752C341286002C4895 /* AppEnvironment.swift */; };
-		C8D3B8792C34176A002C4895 /* OrderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B8782C34176A002C4895 /* OrderCellView.swift */; };
-		C8D3B87B2C342167002C4895 /* AddCoffeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B87A2C342167002C4895 /* AddCoffeeView.swift */; };
-		C8D3B87D2C34233E002C4895 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B87C2C34233E002C4895 /* View+Extensions.swift */; };
-		C8D3B87F2C342998002C4895 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3B87E2C342998002C4895 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B0EE55C2C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheUltimate70HoursIOSDevelopmentBootcamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B0EE55F2C21A30200E143F7 /* HelloCoffeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloCoffeeApp.swift; sourceTree = "<group>"; };
+		1B0EE55F2C21A30200E143F7 /* BudgetsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsApp.swift; sourceTree = "<group>"; };
 		1B0EE5612C21A30200E143F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B0EE5632C21A30500E143F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B0EE5662C21A30500E143F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C8961F262C36DA0900E3CCE2 /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
-		C8D3B86B2C32DF04002C4895 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
-		C8D3B86D2C32DFF4002C4895 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		C8D3B86F2C32E761002C4895 /* CoffeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeModel.swift; sourceTree = "<group>"; };
-		C8D3B8722C338F64002C4895 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
-		C8D3B8752C341286002C4895 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
-		C8D3B8782C34176A002C4895 /* OrderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellView.swift; sourceTree = "<group>"; };
-		C8D3B87A2C342167002C4895 /* AddCoffeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoffeeView.swift; sourceTree = "<group>"; };
-		C8D3B87C2C34233E002C4895 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
-		C8D3B87E2C342998002C4895 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,12 +51,7 @@
 		1B0EE55E2C21A30200E143F7 /* TheUltimate70HoursIOSDevelopmentBootcamp */ = {
 			isa = PBXGroup;
 			children = (
-				C8D3B8772C341751002C4895 /* Views */,
-				C8D3B8742C341270002C4895 /* Utils */,
-				C8D3B8712C338F41002C4895 /* Extensions */,
-				C8D3B86A2C32DEF1002C4895 /* Services */,
-				C8D3B8692C32DEE9002C4895 /* Models */,
-				1B0EE55F2C21A30200E143F7 /* HelloCoffeeApp.swift */,
+				1B0EE55F2C21A30200E143F7 /* BudgetsApp.swift */,
 				1B0EE5612C21A30200E143F7 /* ContentView.swift */,
 				1B0EE5632C21A30500E143F7 /* Assets.xcassets */,
 				1B0EE5652C21A30500E143F7 /* Preview Content */,
@@ -90,51 +65,6 @@
 				1B0EE5662C21A30500E143F7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		C8D3B8692C32DEE9002C4895 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C8D3B86B2C32DF04002C4895 /* Order.swift */,
-				C8D3B86F2C32E761002C4895 /* CoffeeModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		C8D3B86A2C32DEF1002C4895 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				C8D3B86D2C32DFF4002C4895 /* WebService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		C8D3B8712C338F41002C4895 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C8D3B8722C338F64002C4895 /* NumberFormatter+Extensions.swift */,
-				C8D3B87C2C34233E002C4895 /* View+Extensions.swift */,
-				C8D3B87E2C342998002C4895 /* String+Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		C8D3B8742C341270002C4895 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				C8D3B8752C341286002C4895 /* AppEnvironment.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		C8D3B8772C341751002C4895 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C8D3B8782C34176A002C4895 /* OrderCellView.swift */,
-				C8D3B87A2C342167002C4895 /* AddCoffeeView.swift */,
-				C8961F262C36DA0900E3CCE2 /* OrderDetailView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,18 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8D3B8762C341286002C4895 /* AppEnvironment.swift in Sources */,
-				C8D3B87F2C342998002C4895 /* String+Extensions.swift in Sources */,
-				C8961F272C36DA0900E3CCE2 /* OrderDetailView.swift in Sources */,
-				C8D3B86C2C32DF04002C4895 /* Order.swift in Sources */,
-				C8D3B8702C32E761002C4895 /* CoffeeModel.swift in Sources */,
-				C8D3B8732C338F64002C4895 /* NumberFormatter+Extensions.swift in Sources */,
-				C8D3B87B2C342167002C4895 /* AddCoffeeView.swift in Sources */,
 				1B0EE5622C21A30200E143F7 /* ContentView.swift in Sources */,
-				C8D3B8792C34176A002C4895 /* OrderCellView.swift in Sources */,
-				C8D3B86E2C32DFF4002C4895 /* WebService.swift in Sources */,
-				C8D3B87D2C34233E002C4895 /* View+Extensions.swift in Sources */,
-				1B0EE5602C21A30200E143F7 /* HelloCoffeeApp.swift in Sources */,
+				1B0EE5602C21A30200E143F7 /* BudgetsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
