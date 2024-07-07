@@ -13,6 +13,7 @@
 		1B0EE5672C21A30500E143F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0EE5662C21A30500E143F7 /* Preview Assets.xcassets */; };
 		C839B6842C38FA5D00868E31 /* AddBudgetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839B6832C38FA5D00868E31 /* AddBudgetCategoryView.swift */; };
 		C839B6872C39016700868E31 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839B6862C39016700868E31 /* NumberFormatter+Extensions.swift */; };
+		C839B6892C3AC71A00868E31 /* BudgetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839B6882C3AC71A00868E31 /* BudgetListView.swift */; };
 		C8DF74642C377F8600D0A95D /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8DF74622C377F8600D0A95D /* BudgetModel.xcdatamodeld */; };
 		C8DF74692C37841000D0A95D /* BudgetCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF74682C37841000D0A95D /* BudgetCategory+CoreDataClass.swift */; };
 		C8DF746C2C37855400D0A95D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF746B2C37855400D0A95D /* CoreDataManager.swift */; };
@@ -26,6 +27,7 @@
 		1B0EE5662C21A30500E143F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C839B6832C38FA5D00868E31 /* AddBudgetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetCategoryView.swift; sourceTree = "<group>"; };
 		C839B6862C39016700868E31 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		C839B6882C3AC71A00868E31 /* BudgetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListView.swift; sourceTree = "<group>"; };
 		C8DF74632C377F8600D0A95D /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
 		C8DF74682C37841000D0A95D /* BudgetCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C8DF746B2C37855400D0A95D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				C839B6832C38FA5D00868E31 /* AddBudgetCategoryView.swift */,
+				C839B6882C3AC71A00868E31 /* BudgetListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B0EE5622C21A30200E143F7 /* ContentView.swift in Sources */,
+				C839B6892C3AC71A00868E31 /* BudgetListView.swift in Sources */,
 				1B0EE5602C21A30200E143F7 /* BudgetsApp.swift in Sources */,
 				C839B6872C39016700868E31 /* NumberFormatter+Extensions.swift in Sources */,
 				C8DF74692C37841000D0A95D /* BudgetCategory+CoreDataClass.swift in Sources */,
