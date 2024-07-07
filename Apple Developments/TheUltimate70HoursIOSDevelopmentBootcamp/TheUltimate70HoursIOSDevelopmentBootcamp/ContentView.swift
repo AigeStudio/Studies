@@ -11,13 +11,17 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) private var budgetCategoryResults: FetchedResults<BudgetCategory>
     @State private var isPresented: Bool = false
+    var total: Double {
+        budgetCategoryResults.reduce(0) { result, budgetCategory in
+            result + budgetCategory.total
+        }
+    }
 
     var body: some View {
         NavigationStack {
             VStack {
-                List(budgetCategoryResults) { budgetCategory in
-                    Text(budgetCategory.title ?? "")
-                }
+                Text(total as NSNumber, formatter: NumberFormatter.currency).fontWeight(.bold)
+                BudgetListView(budgetCategoryResult: budgetCategoryResults)
             }
             .sheet(isPresented: $isPresented, content: {
                 AddBudgetCategoryView()
