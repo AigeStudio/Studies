@@ -21,7 +21,14 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 Text(total as NSNumber, formatter: NumberFormatter.currency).fontWeight(.bold)
-                BudgetListView(budgetCategoryResult: budgetCategoryResults)
+                BudgetListView(budgetCategoryResult: budgetCategoryResults, onDeleteBudgetCategory: { budgetCategoryResults in
+                    viewContext.delete(budgetCategoryResults)
+                    do {
+                        try viewContext.save()
+                    } catch {
+                        print(error)
+                    }
+                })
             }
             .sheet(isPresented: $isPresented, content: {
                 AddBudgetCategoryView()

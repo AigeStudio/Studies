@@ -10,7 +10,7 @@ import Foundation
 
 @objc(BudgetCategory)
 public class BudgetCategory: NSManagedObject {
-    public override func awakeFromInsert() {
+    override public func awakeFromInsert() {
         self.dateCreated = Date()
     }
 }
