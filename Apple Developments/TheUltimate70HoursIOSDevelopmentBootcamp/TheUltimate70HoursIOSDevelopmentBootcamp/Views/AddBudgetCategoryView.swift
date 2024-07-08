@@ -11,6 +11,7 @@ struct AddBudgetCategoryView: View {
     @State private var title: String = ""
     @State private var total: Double = 100
     @State private var messages: [String] = []
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var viewContext
     var isFormValid: Bool {
         messages.removeAll()
@@ -29,6 +30,7 @@ struct AddBudgetCategoryView: View {
         budgetCategory.total = total
         do {
             try viewContext.save()
+            dismiss()
         } catch {
             print(error.localizedDescription)
         }
@@ -52,7 +54,9 @@ struct AddBudgetCategoryView: View {
                 }
             }).toolbar(content: {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cacnel") {}
+                    Button("Cacnel") {
+                        dismiss()
+                    }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
