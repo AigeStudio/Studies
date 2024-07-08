@@ -16,6 +16,8 @@
 		C839B6892C3AC71A00868E31 /* BudgetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839B6882C3AC71A00868E31 /* BudgetListView.swift */; };
 		C8CF82FF2C3C10DF00102FFF /* Transaction+CoreDataCalss.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF82FE2C3C10DF00102FFF /* Transaction+CoreDataCalss.swift */; };
 		C8CF83012C3C118A00102FFF /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF83002C3C118A00102FFF /* BudgetDetailView.swift */; };
+		C8CF83032C3C283C00102FFF /* TransactionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF83022C3C283C00102FFF /* TransactionListView.swift */; };
+		C8CF83052C3C32F700102FFF /* BudgetSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF83042C3C32F700102FFF /* BudgetSummaryView.swift */; };
 		C8DF74642C377F8600D0A95D /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8DF74622C377F8600D0A95D /* BudgetModel.xcdatamodeld */; };
 		C8DF74692C37841000D0A95D /* BudgetCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF74682C37841000D0A95D /* BudgetCategory+CoreDataClass.swift */; };
 		C8DF746C2C37855400D0A95D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF746B2C37855400D0A95D /* CoreDataManager.swift */; };
@@ -32,6 +34,8 @@
 		C839B6882C3AC71A00868E31 /* BudgetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListView.swift; sourceTree = "<group>"; };
 		C8CF82FE2C3C10DF00102FFF /* Transaction+CoreDataCalss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataCalss.swift"; sourceTree = "<group>"; };
 		C8CF83002C3C118A00102FFF /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
+		C8CF83022C3C283C00102FFF /* TransactionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListView.swift; sourceTree = "<group>"; };
+		C8CF83042C3C32F700102FFF /* BudgetSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSummaryView.swift; sourceTree = "<group>"; };
 		C8DF74632C377F8600D0A95D /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
 		C8DF74682C37841000D0A95D /* BudgetCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BudgetCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C8DF746B2C37855400D0A95D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				C839B6832C38FA5D00868E31 /* AddBudgetCategoryView.swift */,
 				C839B6882C3AC71A00868E31 /* BudgetListView.swift */,
 				C8CF83002C3C118A00102FFF /* BudgetDetailView.swift */,
+				C8CF83022C3C283C00102FFF /* TransactionListView.swift */,
+				C8CF83042C3C32F700102FFF /* BudgetSummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,7 +157,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					1B0EE55B2C21A30200E143F7 = {
 						CreatedOnToolsVersion = 14.0;
@@ -199,8 +205,10 @@
 				C8CF82FF2C3C10DF00102FFF /* Transaction+CoreDataCalss.swift in Sources */,
 				C839B6872C39016700868E31 /* NumberFormatter+Extensions.swift in Sources */,
 				C8DF74692C37841000D0A95D /* BudgetCategory+CoreDataClass.swift in Sources */,
+				C8CF83052C3C32F700102FFF /* BudgetSummaryView.swift in Sources */,
 				C8CF83012C3C118A00102FFF /* BudgetDetailView.swift in Sources */,
 				C839B6842C38FA5D00868E31 /* AddBudgetCategoryView.swift in Sources */,
+				C8CF83032C3C283C00102FFF /* TransactionListView.swift in Sources */,
 				C8DF746C2C37855400D0A95D /* CoreDataManager.swift in Sources */,
 				C8DF74642C377F8600D0A95D /* BudgetModel.xcdatamodeld in Sources */,
 			);
@@ -245,6 +253,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -305,6 +314,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

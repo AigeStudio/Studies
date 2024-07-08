@@ -57,11 +57,11 @@ struct BudgetDetailView: View {
                     Spacer()
                 }
             })
+            // Display summary of the budget category
+            BudgetSummaryView(budgetCategory: budgetCategory)
+            // Display the transaction
+            TransactionListView(request: BudgetCategory.transactionByCategoryRequest(budgetCategory))
             Spacer()
         }
     }
 }
-
-// #Preview {
-//    BudgetDetailView(budgetCategory: BudgetCategory())
-// }
