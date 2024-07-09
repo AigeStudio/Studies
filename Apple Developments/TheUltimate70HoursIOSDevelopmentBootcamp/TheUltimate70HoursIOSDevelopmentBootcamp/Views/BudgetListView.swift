@@ -10,6 +10,8 @@ import SwiftUI
 struct BudgetListView: View {
     let budgetCategoryResult: FetchedResults<BudgetCategory>
     let onDeleteBudgetCategory: (BudgetCategory) -> Void
+    let onEditBudgetCategory: (BudgetCategory) -> Void
+
     var body: some View {
         List {
             if !budgetCategoryResult.isEmpty {
@@ -25,7 +27,10 @@ struct BudgetListView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(budgetCategory.overSpent ? .red : .green)
                             }
-                        }
+                        }.contentShape(Rectangle())
+                            .onLongPressGesture {
+                                onEditBudgetCategory(budgetCategory)
+                            }
                     }
                 }.onDelete(perform: { indexSet in
                     indexSet.map { budgetCategoryResult[$0] }.forEach(onDeleteBudgetCategory)
