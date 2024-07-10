@@ -16,7 +16,7 @@ struct BudgetListView: View {
         List {
             if !budgetCategoryResult.isEmpty {
                 ForEach(budgetCategoryResult) { budgetCategory in
-                    NavigationLink(value: budgetCategory) {
+                    NavigationLink(destination: BudgetDetailView(budgetCategory: budgetCategory), label: {
                         HStack {
                             Text(budgetCategory.title ?? "")
                             Spacer()
@@ -27,11 +27,12 @@ struct BudgetListView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(budgetCategory.overSpent ? .red : .green)
                             }
-                        }.contentShape(Rectangle())
-                            .onLongPressGesture {
-                                onEditBudgetCategory(budgetCategory)
-                            }
-                    }
+                        }
+                        .onLongPressGesture {
+                            onEditBudgetCategory(budgetCategory)
+                        }
+                        .contentShape(Rectangle())
+                    })
                 }.onDelete(perform: { indexSet in
                     indexSet.map { budgetCategoryResult[$0] }.forEach(onDeleteBudgetCategory)
                 })
@@ -40,8 +41,5 @@ struct BudgetListView: View {
             }
         }
         .listStyle(.plain)
-        .navigationDestination(for: BudgetCategory.self) { budgetCategory in
-            BudgetDetailView(budgetCategory: budgetCategory)
-        }
     }
 }

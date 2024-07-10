@@ -12,17 +12,18 @@ enum SheetAction: Identifiable {
     case edit(BudgetCategory)
     var id: Int {
         switch self {
-            case .add:
-                return 1
-            case .edit(_):
-                return 2
+        case .add:
+            return 1
+        case .edit:
+            return 2
         }
     }
 }
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: []) private var budgetCategoryResults: FetchedResults<BudgetCategory>
+//    @FetchRequest(sortDescriptors: []) private var budgetCategoryResults: FetchedResults<BudgetCategory>
+    @FetchRequest(fetchRequest: BudgetCategory.all) var budgetCategoryResults
     @State private var sheetAction: SheetAction?
     var total: Double {
         budgetCategoryResults.reduce(0) { result, budgetCategory in
@@ -46,7 +47,10 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text(total as NSNumber, formatter: NumberFormatter.currency).fontWeight(.bold)
+                HStack {
+                    Text("Total Budget - ")
+                    Text(total as NSNumber, formatter: NumberFormatter.currency).fontWeight(.bold)
+                }
                 BudgetListView(budgetCategoryResult: budgetCategoryResults, onDeleteBudgetCategory: deleteBudgetCategory, onEditBudgetCategory: editBudgetCategory)
             }
             .sheet(item: $sheetAction, content: { sheetAction in

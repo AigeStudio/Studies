@@ -28,6 +28,12 @@ public class BudgetCategory: NSManagedObject {
         total - transactionsTotal
     }
 
+    static var all: NSFetchRequest<BudgetCategory> {
+        let request = BudgetCategory.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
+        return request
+    }
+
     private var transactionsArray: [Transaction] {
         guard let transactions = transactions else { return [] }
         let allTransaction = (transactions.allObjects as? [Transaction]) ?? []
