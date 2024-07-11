@@ -7,8 +7,64 @@
 
 import SwiftUI
 
+/*
+ 结构体 struct 与类 class 的主要区别：
+ 1. 结构体 struct 是值类型，值类型在赋值或传递时会进行值拷贝，例如：
+ ----------------------------------------------------
+ struct Person {
+     var name: String
+ }
+ var person1 = Person(name: "Alice")
+ var person2 = person1// 值类型，拷贝
+ person2.name = "Bob"
+
+ print(person1.name) // 输出 "Alice"
+ print(person2.name) // 输出 "Bob"
+ ----------------------------------------------------
+ 与之相反，如果是 class 的话：
+ ----------------------------------------------------
+ class Person {
+     var name: String
+     init(name: String) {
+         self.name = name
+     }
+ }
+ var person1 = Person(name: "Alice")
+ var person2 = person1// 引用类型，传递引用
+ person2.name = "Bob"
+
+ print(person1.name) // 输出 "Bob"
+ print(person2.name) // 输出 "Bob"
+ ----------------------------------------------------
+
+ 2. 结构体不能被继承但类可以
+
+ 3. 结构体会自动生成构造器，类不会自动生成需要显式声明：
+ struct Point {
+     var x: Int
+     var y: Int
+ }
+ let point = Point(x: 10, y: 20)
+ ----------------------------------------------------
+ class Point {
+     var x: Int
+     var y: Int
+     // 显式声明构造器
+     init(x: Int, y: Int) {
+         self.x = x
+         self.y = y
+     }
+ }
+ let point = Point(x: 10, y: 20)
+
+ 4. 类的对象使用引用计数（ARC - Automatic Reference Counting）来进行管理内存；结构体是值类型不使用引用计数，其生命周期由其作用域决定。
+
+ 5. 结构体如果是常量 let 则其所有的属性也是常量不能被修改；类的实例即使是常量 let，其（var）属性也可以被修改。
+
+ 6. 结构体：函数式编程；类（对象）：面向对象编程。
+ */
 struct ContentView: View {
-    let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈"]
+    let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽"]
     @State var cardCount: Int = 4
     /*
      除此之外，body 变量的声明还可以指定如下具体类型
@@ -17,20 +73,21 @@ struct ContentView: View {
      }
      */
     var body: some View /* “some View” 表示 body 变量为一个 “不透明” 的 View 类型， some 关键字类似于 Kotlin/Java 中的泛型和接口等*/ {
-        VStack {
-            ScrollView {
-                cards
-            }
-            Spacer()
-            cardCountAdjusters
+//        VStack {
+        ScrollView {
+            cards
         }
+//            Spacer()
+//            cardCountAdjusters
+//        }
         .padding()
     }
 
     var cards: some View {
         // 这里的 return 可以被省略，因为这个函数体内实际上只有一行并且返回值正确，编译器可以自动推断这唯一的一行为返回值
-        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 120 /* 最小尺寸 */ ))], content /* content 参数是一个 ViewBuilder */: {
-            ForEach(0 ..< cardCount, id: \.self) { index in
+        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 85 /* 最小尺寸 */ ))], content /* content 参数是一个 ViewBuilder */: {
+            // ForEach(0 ..< cardCount, id: \.self) { index in
+            ForEach(emojis.indices, id: \.self) { index in
                 CardView(content: emojis[index])
                     .aspectRatio(2 / 3, contentMode: .fit)
             }
