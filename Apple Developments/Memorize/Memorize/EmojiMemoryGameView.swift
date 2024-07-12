@@ -64,7 +64,7 @@ import SwiftUI
  6. 结构体：函数式编程；类（对象）：面向对象编程。
  */
 struct EmojiMemoryGameView: View {
-   @ObservedObject var viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGame
 
     let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽"]
     @State var cardCount: Int = 4
@@ -77,7 +77,7 @@ struct EmojiMemoryGameView: View {
     var body: some View /* “some View” 表示 body 变量为一个 “不透明” 的 View 类型， some 关键字类似于 Kotlin/Java 中的泛型和接口等*/ {
         VStack {
             ScrollView {
-                cards
+                cards.animation(.default, value: viewModel.cards)
             }
             Button("Shuffle") {
                 viewModel.shuffle()
@@ -92,10 +92,13 @@ struct EmojiMemoryGameView: View {
         // 这里的 return 可以被省略，因为这个函数体内实际上只有一行并且返回值正确，编译器可以自动推断这唯一的一行为返回值
         return LazyVGrid(columns: [GridItem(.adaptive(minimum: 85 /* 最小尺寸 */ ), spacing: 0)], spacing: 0, content /* content 参数是一个 ViewBuilder */: {
             // ForEach(0 ..< cardCount, id: \.self) { index in
-            ForEach(viewModel.cards.indices, id: \.self) { index in
-                CardView(viewModel.cards[index])
+            ForEach(viewModel.cards) { card in
+                CardView(card)
                     .aspectRatio(2 / 3, contentMode: .fit)
                     .padding(4)
+                    .onTapGesture {
+                        viewModel.choose(card)
+                    }
             }
         })
         .foregroundColor(.orange)
@@ -168,6 +171,7 @@ struct CardView: View {
                 base.fill()
             }
         }
+        .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
     }
 }
 
