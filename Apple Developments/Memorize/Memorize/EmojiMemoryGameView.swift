@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift
 //  Memorize
 //
 //  Created by AigeStudio on 10/7/2024.
@@ -63,7 +63,9 @@ import SwiftUI
 
  6. 结构体：函数式编程；类（对象）：面向对象编程。
  */
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
+   @ObservedObject var viewModel: EmojiMemoryGame
+
     let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽"]
     @State var cardCount: Int = 4
     /*
@@ -73,23 +75,27 @@ struct ContentView: View {
      }
      */
     var body: some View /* “some View” 表示 body 变量为一个 “不透明” 的 View 类型， some 关键字类似于 Kotlin/Java 中的泛型和接口等*/ {
-//        VStack {
-        ScrollView {
-            cards
-        }
+        VStack {
+            ScrollView {
+                cards
+            }
+            Button("Shuffle") {
+                viewModel.shuffle()
+            }
 //            Spacer()
 //            cardCountAdjusters
-//        }
+        }
         .padding()
     }
 
     var cards: some View {
         // 这里的 return 可以被省略，因为这个函数体内实际上只有一行并且返回值正确，编译器可以自动推断这唯一的一行为返回值
-        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 85 /* 最小尺寸 */ ))], content /* content 参数是一个 ViewBuilder */: {
+        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 85 /* 最小尺寸 */ ), spacing: 0)], spacing: 0, content /* content 参数是一个 ViewBuilder */: {
             // ForEach(0 ..< cardCount, id: \.self) { index in
-            ForEach(emojis.indices, id: \.self) { index in
-                CardView(content: emojis[index])
+            ForEach(viewModel.cards.indices, id: \.self) { index in
+                CardView(viewModel.cards[index])
                     .aspectRatio(2 / 3, contentMode: .fit)
+                    .padding(4)
             }
         })
         .foregroundColor(.orange)
@@ -132,52 +138,85 @@ struct ContentView: View {
     }
 }
 
-// View 本身是 immutable 的
 struct CardView: View {
-    let content: String
-
-    // 修改 immutable 中的属性需要添加 @State 装饰器
-    @State var isFaceUp: Bool = true
+    let card: MemoryGame<String>.Card
+    init(_ card: MemoryGame<String>.Card) {
+        self.card = card
+    }
 
     var body: some View {
-        /*
-         这里的 content 参数可以被省略并将 {} 置于 () 之外，称之为 “trailing closure syntax” 尾随闭包语法
-         ZStack(alignment: .top, content: {})
-         等效于
-         ZStack(alignment: .top){}
-         */
-        ZStack(alignment: .center, content: {
+//        ZStack(content: {
+//            let base = RoundedRectangle(cornerRadius: 12)
+//            Group {
+//                base.fill(.white)
+//                base.strokeBorder(StrokeStyle(lineWidth: 2))
+//                Text(card.content).font(.largeTitle)
+//            }
+//            .opacity(card.isFaceUp ? 1 : 0)
+//            base.fill().opacity(card.isFaceUp ? 0 : 1)
+//        })
+        ZStack {
             let base = RoundedRectangle(cornerRadius: 12)
-            Group {
-                base.foregroundColor(.white)
-                base.strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 2]))
-                Image(systemName: "globe")
-                    .hidden()
-                    // 一般而言，View Modifier 的调用顺序不会影响结果，但是如果是 “封装 Modifier” 则需要注意调用顺序。
-                    // View Modifier 分为两种：In-place Modifier（原地 Modifier）和 Wrapper Modifier（封装 Modifier）
-                    // In-place Modifier：指直接作用于 View 本身的 Modifier，这些 Modifier 会在不改变 View 层次结构的情况下修改 View 的属性和行为，例如 padding、foregroundColor、font 等。
-                    // Wrapper Modifier：将一个 View 包裹在另一个 View 中的 Modifier，通常会改变 View 的层次结构。这类 Modifier 通常会创建一个新的容器 View，并将原始 View 作为子 View 放入其中。例如 overlay、clipShape、mask 等。
-                    // background 是个特殊的 Modifier，根据具体的实现既可以看作是 In-place Modifier 也可以是 Wrapper Modifier。
-                    .foregroundColor(Color.green) // View Modifier
-                    .imageScale(.large) // View Modifier
-                    .foregroundStyle(.tint) // View Modifier
-                Text("Hello CS193p!")
-                    .hidden()
-                    .padding()
-                Text(content)
+            if card.isFaceUp {
+                base.fill(Color.white)
+                base.strokeBorder(lineWidth: 2)
+                Text(card.content)
+                    .font(.system(size: 200))
+                    .minimumScaleFactor(0.01)
+                    .aspectRatio(1, contentMode: .fit)
+            } else {
+                base.fill()
             }
-            .opacity(isFaceUp ? 1 : 0)
-            base.fill().opacity(isFaceUp ? 0 : 1)
-        })
-        .onTapGesture(count: 2 /* 设置指定 tap 次数后触发 */, perform: {
-            print("Tapped")
-            // 因为 View 是 immutable 的，所以直接使用下面这行代码会报错：无法修改 immutable 类中的属性，此时需要将可以被修改的属性使用 @State 装饰器修饰
-            // isFaceUp = !isFaceUp
-            isFaceUp.toggle() // 等效于 isFaceUp = !isFaceUp
-        })
+        }
     }
 }
 
+//// View 本身是 immutable 的
+// struct CardView: View {
+//    let content: String
+//
+//    // 修改 immutable 中的属性需要添加 @State 装饰器
+//    @State var isFaceUp: Bool = true
+//
+//    var body: some View {
+//        /*
+//         这里的 content 参数可以被省略并将 {} 置于 () 之外，称之为 “trailing closure syntax” 尾随闭包语法
+//         ZStack(alignment: .top, content: {})
+//         等效于
+//         ZStack(alignment: .top){}
+//         */
+//        ZStack(alignment: .center, content: {
+//            let base = RoundedRectangle(cornerRadius: 12)
+//            Group {
+//                base.foregroundColor(.white)
+//                base.strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 2]))
+//                Image(systemName: "globe")
+//                    .hidden()
+//                    // 一般而言，View Modifier 的调用顺序不会影响结果，但是如果是 “封装 Modifier” 则需要注意调用顺序。
+//                    // View Modifier 分为两种：In-place Modifier（原地 Modifier）和 Wrapper Modifier（封装 Modifier）
+//                    // In-place Modifier：指直接作用于 View 本身的 Modifier，这些 Modifier 会在不改变 View 层次结构的情况下修改 View 的属性和行为，例如 padding、foregroundColor、font 等。
+//                    // Wrapper Modifier：将一个 View 包裹在另一个 View 中的 Modifier，通常会改变 View 的层次结构。这类 Modifier 通常会创建一个新的容器 View，并将原始 View 作为子 View 放入其中。例如 overlay、clipShape、mask 等。
+//                    // background 是个特殊的 Modifier，根据具体的实现既可以看作是 In-place Modifier 也可以是 Wrapper Modifier。
+//                    .foregroundColor(Color.green) // View Modifier
+//                    .imageScale(.large) // View Modifier
+//                    .foregroundStyle(.tint) // View Modifier
+//                Text("Hello CS193p!")
+//                    .hidden()
+//                    .padding()
+//                Text(content)
+//            }
+//            .opacity(isFaceUp ? 1 : 0)
+//            base.fill().opacity(isFaceUp ? 0 : 1)
+//        })
+//        .onTapGesture(count: 2 /* 设置指定 tap 次数后触发 */, perform: {
+//            print("Tapped")
+//            // 因为 View 是 immutable 的，所以直接使用下面这行代码会报错：无法修改 immutable 类中的属性，此时需要将可以被修改的属性使用 @State 装饰器修饰
+//            // isFaceUp = !isFaceUp
+//            isFaceUp.toggle() // 等效于 isFaceUp = !isFaceUp
+//        })
+//    }
+// }
+
 #Preview {
-    ContentView()
+    EmojiMemoryGameView(viewModel: EmojiMemoryGame())
 }
