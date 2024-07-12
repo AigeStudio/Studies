@@ -13,6 +13,29 @@ func createCardContent(forPairAtIndex index: Int) -> String {
 
 // 这是一个 ViewModel
 // 类继承自 ObservableObject 表示该类是一个可以被观察的协议类
+// ObservableObject 通常搭配 @Published、 @ObservedObject 以及 @StateObject 一起使用。其中， @Published 用于标记 ObservableObject 类中需要被观察的属性，比如这里的 model：
+//
+// @Published private var model: MemoryGame<String> = createMemoryGame()
+//
+// 在使用 EmojiMemoryGame 的地方，通过 @ObservedObject 注入实例，在生成 EmojiMemoryGame 的地方使用 @StateObject 创建并初始化实例，比如我们在 App 结构体中执行创建并注入给 View：
+//
+//struct MemorizeApp: App {
+//    @StateObject var game = EmojiMemoryGame()
+//    var body: some Scene {
+//        WindowGroup {
+//            EmojiMemoryGameView(viewModel: game)
+//        }
+//    }
+//}
+//
+// 在 View 中通过 @ObservedObject 获取对象：
+//
+//struct EmojiMemoryGameView: View {
+//    @ObservedObject var viewModel: EmojiMemoryGame
+//}
+//
+// 每当 model 改变时， @ObservedObject 标记的 viewModel 都会是最新的一个 EmojiMemoryGame 实例并触发 View 重新绘制。
+// 因为 EmojiMemoryGame 是一个结构体，所以即使是 EmojiMemoryGame 内部的属性改变也会触发变化通知。
 class EmojiMemoryGame: ObservableObject {
     // 将 model 设置为 private 作为 access control（访问控制）
     // private var model: MemoryGame<String> = MemoryGame(numberOfPairsOfCards: 4, cardContentFactory: createCardContent)
