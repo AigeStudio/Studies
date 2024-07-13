@@ -68,6 +68,7 @@ struct EmojiMemoryGameView: View {
 
     let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽"]
     @State var cardCount: Int = 4
+    private let aspectRatio: CGFloat = 2 / 3
     /*
      除此之外，body 变量的声明还可以指定如下具体类型
      var body: Text {
@@ -76,31 +77,34 @@ struct EmojiMemoryGameView: View {
      */
     var body: some View /* “some View” 表示 body 变量为一个 “不透明” 的 View 类型， some 关键字类似于 Kotlin/Java 中的泛型和接口等*/ {
         VStack {
-            ScrollView {
-                cards.animation(.default, value: viewModel.cards)
-            }
+//            ScrollView {
+            cards.animation(.default, value: viewModel.cards)
+//                .background(.red)
+//            }
             Button("Shuffle") {
                 viewModel.shuffle()
             }
+//            .background(Color.blue)
 //            Spacer()
 //            cardCountAdjusters
         }
+//        .background(Color.yellow)// 将 background 设置在 padding 前后是有区别的
         .padding()
+//        .background(Color.yellow)
     }
 
-    var cards: some View {
+    /*
+     这里的 cards 可以添加一个 @ViewBuilder 属性装饰器以表明该属性是一个 ViewBuilder，此时可以省略掉 “return” 关键字
+     */
+    private var cards: some View {
         // 这里的 return 可以被省略，因为这个函数体内实际上只有一行并且返回值正确，编译器可以自动推断这唯一的一行为返回值
-        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 85 /* 最小尺寸 */ ), spacing: 0)], spacing: 0, content /* content 参数是一个 ViewBuilder */: {
-            // ForEach(0 ..< cardCount, id: \.self) { index in
-            ForEach(viewModel.cards) { card in
-                CardView(card)
-                    .aspectRatio(2 / 3, contentMode: .fit)
-                    .padding(4)
-                    .onTapGesture {
-                        viewModel.choose(card)
-                    }
-            }
-        })
+        return AspectVGrid(viewModel.cards, aspectRatio: aspectRatio) { card in
+            CardView(card)
+                .padding(4)
+                .onTapGesture {
+                    viewModel.choose(card)
+                }
+        }
         .foregroundColor(.orange)
     }
 

@@ -19,20 +19,20 @@ func createCardContent(forPairAtIndex index: Int) -> String {
 //
 // 在使用 EmojiMemoryGame 的地方，通过 @ObservedObject 注入实例，在生成 EmojiMemoryGame 的地方使用 @StateObject 创建并初始化实例，比如我们在 App 结构体中执行创建并注入给 View：
 //
-//struct MemorizeApp: App {
+// struct MemorizeApp: App {
 //    @StateObject var game = EmojiMemoryGame()
 //    var body: some Scene {
 //        WindowGroup {
 //            EmojiMemoryGameView(viewModel: game)
 //        }
 //    }
-//}
+// }
 //
 // 在 View 中通过 @ObservedObject 获取对象：
 //
-//struct EmojiMemoryGameView: View {
+// struct EmojiMemoryGameView: View {
 //    @ObservedObject var viewModel: EmojiMemoryGame
-//}
+// }
 //
 // 每当 model 改变时， @ObservedObject 标记的 viewModel 都会是最新的一个 EmojiMemoryGame 实例并触发 View 重新绘制。
 // 因为 EmojiMemoryGame 是一个结构体，所以即使是 EmojiMemoryGame 内部的属性改变也会触发变化通知。
