@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CardView: View {
-    let card: MemoryGame<String>.Card
-    init(_ card: MemoryGame<String>.Card) {
+    typealias Card = MemoryGame<String>.Card
+    let card: Card
+    init(_ card: Card) {
         self.card = card
     }
 
@@ -25,24 +26,51 @@ struct CardView: View {
 //            base.fill().opacity(card.isFaceUp ? 0 : 1)
 //        })
         ZStack {
-            let base = RoundedRectangle(cornerRadius: 12)
+            let base = RoundedRectangle(cornerRadius: Constants.cornetRadius)
             if card.isFaceUp {
                 base.fill(Color.white)
-                base.strokeBorder(lineWidth: 2)
+                base.strokeBorder(lineWidth: Constants.lineWidth)
                 Text(card.content)
-                    .font(.system(size: 200))
-                    .minimumScaleFactor(0.01)
+                    .font(.system(size: Constants.FontSize.largest))
+                    .minimumScaleFactor(Constants.FontSize.scaleFactor)
+                    .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fit)
+                    .padding(Constants.inset)
             } else {
                 base.fill()
             }
         }
         .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
     }
+    
+    private enum Constants {
+        static let cornetRadius: CGFloat = 12
+        static let lineWidth: CGFloat = 2
+        static let inset: CGFloat = 5
+        enum FontSize {
+            static let largest: CGFloat = 200
+            static let smallest: CGFloat = 10
+            static let scaleFactor = smallest / largest
+        }
+    }
 }
 
+/*
+ 我猜这个 #Preview 的实现可以参考非 ViewBuilder 的实现，在函数体内只有 View 时可以将这个 View 作为预览对象返回，但是当函数体内有其它代码逻辑时，需要 return 来显式返回这个 View。
+ */
 #Preview {
-    CardView(MemoryGame<String>.Card(content: "X", id: "test1"))
-        .padding()
-        .foregroundColor(.green)
+    typealias Card = CardView.Card
+    return VStack {
+        HStack {
+            CardView(Card(isFaceUp: true, content: "X", id: "test1"))
+                .aspectRatio(4 / 3, contentMode: .fit)
+            CardView(Card(content: "X", id: "test1"))
+        }
+        HStack {
+            CardView(Card(isFaceUp: true, isMatched: true, content: "This is a very long string and I hope it fits", id: "test1"))
+            CardView(Card(isMatched: true, content: "X", id: "test1"))
+        }
+    }
+    .padding()
+    .foregroundColor(.green)
 }

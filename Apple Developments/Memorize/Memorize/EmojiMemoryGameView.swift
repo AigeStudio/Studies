@@ -69,6 +69,7 @@ struct EmojiMemoryGameView: View {
     let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽"]
     @State var cardCount: Int = 4
     private let aspectRatio: CGFloat = 2 / 3
+    private let spacing: CGFloat = 4
     /*
      除此之外，body 变量的声明还可以指定如下具体类型
      var body: Text {
@@ -78,7 +79,9 @@ struct EmojiMemoryGameView: View {
     var body: some View /* “some View” 表示 body 变量为一个 “不透明” 的 View 类型， some 关键字类似于 Kotlin/Java 中的泛型和接口等*/ {
         VStack {
 //            ScrollView {
-            cards.animation(.default, value: viewModel.cards)
+            cards
+                .foregroundColor(viewModel.color)
+                .animation(.default, value: viewModel.cards)
 //                .background(.red)
 //            }
             Button("Shuffle") {
@@ -100,12 +103,11 @@ struct EmojiMemoryGameView: View {
         // 这里的 return 可以被省略，因为这个函数体内实际上只有一行并且返回值正确，编译器可以自动推断这唯一的一行为返回值
         return AspectVGrid(viewModel.cards, aspectRatio: aspectRatio) { card in
             CardView(card)
-                .padding(4)
+                .padding(spacing)
                 .onTapGesture {
                     viewModel.choose(card)
                 }
         }
-        .foregroundColor(.orange)
     }
 
     var cardCountAdjusters: some View {

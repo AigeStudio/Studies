@@ -91,10 +91,16 @@ class EmojiMemoryGame: ObservableObject {
         }
     }
 
+    typealias Card = MemoryGame<String>.Card
+
     @Published private var model: MemoryGame<String> = createMemoryGame() // 省略类名调用静态函数
 
-    var cards: [MemoryGame<String>.Card] {
+    var cards: [Card] {
         return model.cards
+    }
+
+    var color: Color {
+        return .orange
     }
 
     // MARK: - Intents
@@ -103,7 +109,7 @@ class EmojiMemoryGame: ObservableObject {
         model.shuffle()
     }
 
-    func choose(_ card: MemoryGame<String>.Card) {
+    func choose(_ card: Card) {
         model.choose(card)
     }
 }
