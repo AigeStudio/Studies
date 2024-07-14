@@ -30,11 +30,16 @@ struct CardView: View {
             if card.isFaceUp {
                 base.fill(Color.white)
                 base.strokeBorder(lineWidth: Constants.lineWidth)
-                Text(card.content)
-                    .font(.system(size: Constants.FontSize.largest))
-                    .minimumScaleFactor(Constants.FontSize.scaleFactor)
-                    .multilineTextAlignment(.center)
-                    .aspectRatio(1, contentMode: .fit)
+                Pie(endAngle: .degrees(240))
+                    .opacity(Constants.Pie.opacity)
+                    .overlay {
+                        Text(card.content)
+                            .font(.system(size: Constants.FontSize.largest))
+                            .minimumScaleFactor(Constants.FontSize.scaleFactor)
+                            .multilineTextAlignment(.center)
+                            .aspectRatio(1, contentMode: .fit)
+                            .padding(Constants.Pie.inset)
+                    }
                     .padding(Constants.inset)
             } else {
                 base.fill()
@@ -42,7 +47,7 @@ struct CardView: View {
         }
         .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
     }
-    
+
     private enum Constants {
         static let cornetRadius: CGFloat = 12
         static let lineWidth: CGFloat = 2
@@ -51,6 +56,11 @@ struct CardView: View {
             static let largest: CGFloat = 200
             static let smallest: CGFloat = 10
             static let scaleFactor = smallest / largest
+        }
+
+        enum Pie {
+            static let inset: CGFloat = 5
+            static let opacity: CGFloat = 0.4
         }
     }
 }
