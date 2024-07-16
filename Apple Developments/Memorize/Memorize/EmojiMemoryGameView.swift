@@ -126,14 +126,20 @@ struct EmojiMemoryGameView: View {
                 })
                 .onTapGesture {
                     withAnimation {
+                        let scoreBeforeChoosing = viewModel.score // 记录变化前的分数
                         viewModel.choose(card)
+                        let scoreChange = viewModel.score - scoreBeforeChoosing // 计算分数的变化
+                        lastScoreChange = (scoreChange, causedByCardId: card.id) // 赋值
                     }
                 }
         }
     }
 
+    @State private var lastScoreChange: (amount: Int, causedByCardId: Card.ID) = (amount: 0, causedByCardId: "")
+
     private func scoreChange(causedBy card: Card) -> Int {
-        return 0
+        let (amount, id) = lastScoreChange
+        return card.id == id ? amount : 0
     }
 
     var cardCountAdjusters: some View {
