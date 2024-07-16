@@ -64,6 +64,7 @@ import SwiftUI
  6. 结构体：函数式编程；类（对象）：面向对象编程。
  */
 struct EmojiMemoryGameView: View {
+    typealias Card = MemoryGame<String>.Card
     @ObservedObject var viewModel: EmojiMemoryGame
 
     let emojis: [String] = ["👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽", "😈", "👻", "🎃", "👽"]
@@ -81,12 +82,15 @@ struct EmojiMemoryGameView: View {
 //            ScrollView {
             cards
                 .foregroundColor(viewModel.color)
-                .animation(.default, value: viewModel.cards)
+//                .animation(.default, value: viewModel.cards)
 //                .background(.red)
 //            }
-            Button("Shuffle") {
-                viewModel.shuffle()
+            HStack {
+                score
+                Spacer()
+                shuffle
             }
+            .font(.largeTitle)
 //            .background(Color.blue)
 //            Spacer()
 //            cardCountAdjusters
@@ -94,6 +98,19 @@ struct EmojiMemoryGameView: View {
 //        .background(Color.yellow)// 将 background 设置在 padding 前后是有区别的
         .padding()
 //        .background(Color.yellow)
+    }
+
+    private var score: some View {
+        Text("Score: \(viewModel.score)")
+            .animation(nil)
+    }
+
+    private var shuffle: some View {
+        Button("Shuffle") {
+            withAnimation /* (.interactiveSpring(response: 1, dampingFraction: 0.5)) */ {
+                viewModel.shuffle()
+            }
+        }
     }
 
     /*
@@ -104,10 +121,19 @@ struct EmojiMemoryGameView: View {
         return AspectVGrid(viewModel.cards, aspectRatio: aspectRatio) { card in
             CardView(card)
                 .padding(spacing)
+                .overlay(content: {
+                    FlyingNumber(number: scoreChange(causedBy: card))
+                })
                 .onTapGesture {
-                    viewModel.choose(card)
+                    withAnimation {
+                        viewModel.choose(card)
+                    }
                 }
         }
+    }
+
+    private func scoreChange(causedBy card: Card) -> Int {
+        return 0
     }
 
     var cardCountAdjusters: some View {

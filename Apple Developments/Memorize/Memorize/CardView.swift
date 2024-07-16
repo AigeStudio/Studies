@@ -34,6 +34,8 @@ struct CardView: View {
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(Constants.Pie.inset)
+                    .rotationEffect(.degrees(card.isMatched ? 360 : 0))
+                    .animation(.spin(duration: 1), value: card.isMatched)
             }
             .padding(Constants.inset)
             .cardify(isFaceUp: card.isFaceUp)
@@ -54,6 +56,12 @@ struct CardView: View {
             static let inset: CGFloat = 5
             static let opacity: CGFloat = 0.4
         }
+    }
+}
+
+extension Animation {
+    static func spin(duration: TimeInterval) -> Animation {
+        .linear(duration: 1).repeatForever(autoreverses: false)
     }
 }
 
