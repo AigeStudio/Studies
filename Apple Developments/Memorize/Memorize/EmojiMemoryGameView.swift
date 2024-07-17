@@ -71,6 +71,9 @@ struct EmojiMemoryGameView: View {
     @State var cardCount: Int = 4
     private let aspectRatio: CGFloat = 2 / 3
     private let spacing: CGFloat = 4
+    private let dealAnimation: Animation = .easeInOut(duration: 1)
+    private let dealInterval: TimeInterval = 0.15
+    private let deckWIdth: CGFloat = 50
     /*
      除此之外，body 变量的声明还可以指定如下具体类型
      var body: Text {
@@ -159,13 +162,18 @@ struct EmojiMemoryGameView: View {
         })
         .frame(width: deckWidth, height: deckWidth / aspectRatio)
         .onTapGesture(perform: {
-            // deal the cards
-            withAnimation(.easeInOut(duration: 2)) {
-                for card in viewModel.cards {
-                    dealt.insert(card.id)
-                }
-            }
+            deal()
         })
+    }
+
+    private func deal() {
+        var delay: TimeInterval = 0
+        for card in viewModel.cards {
+            withAnimation(dealAnimation.delay(delay)) {
+                _ = dealt.insert(card.id)
+            }
+            delay += dealInterval
+        }
     }
 
     private let deckWidth: CGFloat = 50
