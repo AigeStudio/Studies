@@ -32,6 +32,7 @@ struct CardView: View {
                     .overlay { cardContents.padding(Constants.Pie.inset) }
                     .padding(Constants.inset)
                     .cardify(isFaceUp: card.isFaceUp)
+                    .transition(.scale)
             } else {
                 Color.clear
             }
