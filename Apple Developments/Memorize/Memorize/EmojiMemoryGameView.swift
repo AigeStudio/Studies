@@ -124,14 +124,19 @@ struct EmojiMemoryGameView: View {
                 .overlay(content: {
                     FlyingNumber(number: scoreChange(causedBy: card))
                 })
+                .zIndex(scoreChange(causedBy: card) != 0 ? 100 : 0)
                 .onTapGesture {
-                    withAnimation {
-                        let scoreBeforeChoosing = viewModel.score // 记录变化前的分数
-                        viewModel.choose(card)
-                        let scoreChange = viewModel.score - scoreBeforeChoosing // 计算分数的变化
-                        lastScoreChange = (scoreChange, causedByCardId: card.id) // 赋值
-                    }
+                    choose(card)
                 }
+        }
+    }
+
+    private func choose(_ card: Card) {
+        withAnimation {
+            let scoreBeforeChoosing = viewModel.score // 记录变化前的分数
+            viewModel.choose(card)
+            let scoreChange = viewModel.score - scoreBeforeChoosing // 计算分数的变化
+            lastScoreChange = (scoreChange, causedByCardId: card.id) // 赋值
         }
     }
 

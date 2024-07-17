@@ -17,8 +17,8 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         // add numberOfPairsOfCards x 2 cards
         for pairIndex in 0 ..< max(2, numberOfPairsOfCards) {
             let content: CardContent = cardContentFactory(pairIndex)
-            cards.append(Card(content: content, id: "\(pairIndex+1)a"))
-            cards.append(Card(content: content, id: "\(pairIndex+1)b"))
+            cards.append(Card(content: content, id: "\(pairIndex + 1)a"))
+            cards.append(Card(content: content, id: "\(pairIndex + 1)b"))
         }
     }
 
@@ -47,7 +47,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                         cards[chosenIndex].isMatched = true
                         cards[potentialMatchIndex].isMatched = true
-                        score += 2
+                        score += 2 + cards[chosenIndex].bouns + cards[potentialMatchIndex].bouns
                     } else {
                         if cards[chosenIndex].hasBeenSeen {
                             score -= 1
@@ -81,6 +81,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     struct Card: Equatable, Identifiable, CustomDebugStringConvertible {
         var isFaceUp = false {
             didSet {
+                if isFaceUp {
+                    startUsingBounsTime()
+                } else {
+                    stopUsingBounsTime()
+                }
                 if oldValue && !isFaceUp {
                     hasBeenSeen = true
                 }
@@ -88,8 +93,60 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
 
         var hasBeenSeen = false
-        var isMatched = false
+        var isMatched = false {
+            didSet {
+                if isMatched {
+                    stopUsingBounsTime()
+                }
+            }
+        }
+
         let content: CardContent
+
+        // MARK: - Bouns Time
+
+        // Call this when the card transitions to face up state
+        private mutating func startUsingBounsTime() {
+            if isFaceUp && !isMatched && bounsPercentRemaining > 0, lastFaceUpDate == nil {
+                lastFaceUpDate = Date()
+            }
+        }
+
+        // Call this when the cards goes back face down or gets matched
+        private mutating func stopUsingBounsTime() {
+            pastFaceUpTime = faceUpTime
+            lastFaceUpDate = nil
+        }
+
+        // the bouns earned so far (one point for every second of the bounsTimeLimit that was not used)
+        // this gets smaller and smaller the longer the card remains face up without being matched
+        var bouns: Int {
+            Int(bounsTimeLimit * bounsPercentRemaining)
+        }
+
+        // percentage of the bouns time remaining
+        var bounsPercentRemaining: Double {
+            bounsTimeLimit > 0 ? max(0, bounsTimeLimit - faceUpTime) / bounsTimeLimit : 0
+        }
+
+        var faceUpTime: TimeInterval {
+            if let lastFaceUpDate {
+                return pastFaceUpTime + Date().timeIntervalSince(lastFaceUpDate)
+            } else {
+                return pastFaceUpTime
+            }
+        }
+
+        // Can be zero which would mean "no bouns available" for matching this card quickly
+        var bounsTimeLimit: TimeInterval = 6
+
+        // the last time this card was turned face up
+        var lastFaceUpDate: Date?
+
+        // the accumulated time this card was face up in the past
+        // (i.e. not including the current time it's been face up if it is currently so)
+        var pastFaceUpTime: TimeInterval = 0
+
         var id: String
         var debugDescription: String {
             return "\(id): \(content) \(isFaceUp ? "up" : "down") \(isMatched ? "matched" : "")"
