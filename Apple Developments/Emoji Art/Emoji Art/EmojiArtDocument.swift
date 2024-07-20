@@ -9,7 +9,7 @@ import SwiftUI
 
 class EmojiArtDocument: ObservableObject {
     typealias Emoji = EmojiArt.Emoji
-    private var emojiArt: EmojiArt = .init()
+    @Published private var emojiArt: EmojiArt = .init()
     init() {
         emojiArt.addEmoji("🛁", at: .init(x: -200, y: -150), size: 200)
         emojiArt.addEmoji("🪩", at: .init(x: 250, y: 100), size: 80)
