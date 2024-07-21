@@ -64,7 +64,7 @@ struct EmojiArtDocumentView: View {
             let center = geometry.frame(in: .local).center
             return Emoji.Position(
                 x: Int(location.x - center.x),
-                y: Int((location.x - center.y)))
+                y: Int(-(location.y - center.y)))
         }
 }
 
